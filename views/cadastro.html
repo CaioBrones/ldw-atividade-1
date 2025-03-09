@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br>
+<br>
+<br>
+<br> 
+
+<div class="cadastro-container">
+    <h2>Cadastrar Novo Celular</h2>
+    <form method="POST" class="form-cadastro">
+        <input type="text" name="nome" placeholder="Nome do Celular" required>
+        <input type="number" name="preco" placeholder="Preço" required>
+        <input type="url" name="imagem_url" placeholder="URL da Imagem" required>
+        <button type="submit" class="custom-button">Cadastrar</button>
+    </form>
+</div>
+
+<div class="tabela-container">
+    <h2>CELULARES CADASTRADOS</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Imagem</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for celular in celulares %}
+            <tr>
+                <td>{{ celular.nome }}</td>
+                <td>R$ {{ celular.preco }}</td>
+                <td><img src="{{ celular.imagem_url }}" alt="{{ celular.nome }}" width="100"></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+    <footer class="footer">
+        <div class="footer-section">
+            <h3>Categorias</h3>
+            <ul>
+                <li><a href="#">Smartphones</a></li>
+                <li><a href="#">Eletrônicos</a></li>
+                <li><a href="#">Eletrodomésticos</a></li>
+                <li><a href="#">Tablets</a></li>
+                <li><a href="#">Áudio</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>Informações</h3>
+            <ul>
+                <li><a href="#">Sobre nós</a></li>
+                <li><a href="#">Informações de entrega</a></li>
+                <li><a href="#">Política de privacidade</a></li>
+                <li><a href="#">Termos e condições</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>Contate-nos</h3>
+            <p>(13) 919281801</p>
+            <p>dudashop@gmail.com</p>
+            <p>Todos os dias da semana, das 18:30 às 23:00</p>
+        </div>
+
+        <div class="footer-section">
+            <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo" class="footer-logo">
+        </div>
+    </footer>
+
+{% endblock content %}
